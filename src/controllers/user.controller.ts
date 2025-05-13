@@ -43,3 +43,22 @@ export const deleteUser = async (req: Request, res: Response) => {
     res.status(400).json({ error: 'User deletion failed' })
   }
 }
+
+
+
+
+
+
+async function createSampleUser() {
+
+  const user = await prisma.user.create({
+    data: {
+      name: "test user",
+      email: "test@test.com"
+    }
+  });
+
+  console.log('User created:', user)
+}
+
+createSampleUser();
