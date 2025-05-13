@@ -13,7 +13,7 @@ export const getUsers = async (_: Request, res: Response) => {
 export const getUserById = async (req: Request, res: Response) => {
   const id = Number(req.params.id)
 
-  const user: User | null = await prisma.user.findUnique({ where: { id } })
+  const user = await prisma.user.findUnique({ where: { id } })
   
   if (user) {
     return res.json(user)
@@ -26,7 +26,7 @@ export const createUser = async (req: Request, res: Response) => {
   const { name, email } = req.body
 
   try {
-    const user: User = await prisma.user.create({ data: { name, email } })
+    const user = await prisma.user.create({ data: { name, email } })
     res.status(201).json(user)
   } catch (error) {
     res.status(400).json({ error: 'User creation failed' })
